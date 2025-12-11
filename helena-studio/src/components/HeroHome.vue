@@ -3,7 +3,12 @@
     <div class="max-w-6xl mx-auto px-4 md:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         <!-- Left Content -->
-        <div class="space-y-6">
+        <div 
+          v-motion
+          :initial="{ opacity: 0, y: 50 }"
+          :visible="{ opacity: 1, y: 0, transition: { duration: 600, delay: 100 } }"
+          class="space-y-6"
+        >
           <div>
             <h1 
               class="leading-[60px]" 
@@ -41,7 +46,12 @@
         </div>
 
         <!-- Right Image -->
-        <div class="relative">
+        <div 
+          v-motion
+          :initial="{ opacity: 0, x: 50 }"
+          :visible="{ opacity: 1, x: 0, transition: { duration: 600, delay: 300 } }"
+          class="relative"
+        >
           <div class="rounded-2xl overflow-hidden shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
             <img 
               :src="heroImage" 
@@ -53,22 +63,28 @@
       </div>
     </div>
   </section>
+
+  <!-- Booking Modal -->
+  <PesanSekarang v-model:open="showBookingModal" />
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { ref } from 'vue'
 import heroImage from '@/assets/HeroHome.png'
+import PesanSekarang from './PesanSekarang.vue'
 
 const props = defineProps({
   onBookNow: Function,
   onViewServices: Function
 })
 
+const showBookingModal = ref(false)
+
 const handleBookNow = () => {
   if (props.onBookNow) {
     props.onBookNow()
   } else {
-    window.open('https://wa.me/6282255819535', '_blank')
+    showBookingModal.value = true
   }
 }
 

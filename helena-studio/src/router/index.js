@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../components/Home.vue'
+import Home from '../pages/Home.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +12,7 @@ const router = createRouter({
     {
       path: '/treatments',
       name: 'treatments',
-      component: () => import('../components/Treatments.vue')
+      component: () => import('../pages/Treatments.vue')
     },
     {
       path: '/treatments/haircut',
@@ -42,12 +42,17 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      component: () => import('../components/About.vue')
+      component: () => import('../pages/About.vue')
     },
     {
       path: '/contact',
       name: 'contact',
-      component: () => import('../components/Contact.vue')
+      component: () => import('../pages/Contact.vue')
+    },
+    {
+      path: '/hairstyle-ai',
+      name: 'hairstyle-ai',
+      component: () => import('../components/HairstyleAI.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {

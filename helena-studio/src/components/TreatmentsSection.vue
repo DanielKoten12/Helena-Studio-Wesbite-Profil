@@ -11,7 +11,12 @@
       <!-- Treatment Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Haircut Card -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+        <div 
+          v-motion
+          :initial="{ opacity: 0, y: 30 }"
+          :visible="{ opacity: 1, y: 0, transition: { duration: 500, delay: 0 } }"
+          class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+        >
           <div class="overflow-hidden h-64">
             <img 
               :src="haircutImage" 
@@ -39,7 +44,12 @@
         </div>
 
         <!-- Hair Coloring Card -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+        <div 
+          v-motion
+          :initial="{ opacity: 0, y: 30 }"
+          :visible="{ opacity: 1, y: 0, transition: { duration: 500, delay: 100 } }"
+          class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+        >
           <div class="overflow-hidden h-64">
             <img 
               :src="coloringImage" 
@@ -67,7 +77,12 @@
         </div>
 
         <!-- Hair Keratin Treatment Card -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+        <div 
+          v-motion
+          :initial="{ opacity: 0, y: 30 }"
+          :visible="{ opacity: 1, y: 0, transition: { duration: 500, delay: 200 } }"
+          class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+        >
           <div class="overflow-hidden h-64">
             <img 
               :src="keratinImage" 

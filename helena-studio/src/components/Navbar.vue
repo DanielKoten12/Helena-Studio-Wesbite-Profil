@@ -1,5 +1,8 @@
 <template>
-  <nav class="sticky top-0 z-50 bg-white shadow-sm">
+  <nav 
+    class="sticky top-0 z-50 bg-white transition-shadow duration-300"
+    :class="scrolled ? 'shadow-lg' : 'shadow-sm'"
+  >
     <div class="max-w-[1440px] mx-auto px-4 md:px-8 py-4">
       <div class="flex items-center justify-between">
         <button 
@@ -39,6 +42,13 @@
             :class="$route.name === 'contact' ? 'text-[#B76E79]' : 'text-gray-700 hover:text-[#B76E79]'"
           >
             Find Us
+          </router-link>
+          <router-link 
+            to="/hairstyle-ai"
+            class="transition-colors font-semibold"
+            :class="$route.name === 'hairstyle-ai' ? 'text-[#B76E79]' : 'text-gray-700 hover:text-[#B76E79]'"
+          >
+            Hairstyle AI
           </router-link>
         </div>
         
@@ -98,6 +108,14 @@
           >
             Find Us
           </router-link>
+          <router-link 
+            to="/hairstyle-ai"
+            @click="mobileMenuOpen = false"
+            class="text-left transition-colors font-semibold"
+            :class="$route.name === 'hairstyle-ai' ? 'text-[#B76E79]' : 'text-gray-700'"
+          >
+            Hairstyle AI
+          </router-link>
           <button 
             @click="handleBookNow(); mobileMenuOpen = false"
             class="rounded-full w-full h-10 text-white hover:opacity-90 transition-opacity"
@@ -109,15 +127,33 @@
       </div>
     </div>
   </nav>
+
+  <!-- Booking Modal -->
+  <PesanSekarang v-model:open="showBookingModal" />
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { Menu, X } from 'lucide-vue-next'
+import PesanSekarang from './PesanSekarang.vue'
 
 const mobileMenuOpen = ref(false)
+const showBookingModal = ref(false)
+const scrolled = ref(false)
+
+const handleScroll = () => {
+  scrolled.value = window.scrollY > 10
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 
 const handleBookNow = () => {
-  window.open('https://wa.me/6282255819535', '_blank')
+  showBookingModal.value = true
 }
 </script>

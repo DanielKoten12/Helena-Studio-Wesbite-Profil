@@ -1,7 +1,12 @@
 <template>
   <section class="bg-[#f7f7f7] py-12 md:py-16 lg:py-20">
     <div class="max-w-6xl mx-auto px-4 md:px-8">
-      <div class="flex flex-col gap-6 items-center text-center">
+      <div 
+        v-motion
+        :initial="{ opacity: 0, y: 30 }"
+        :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
+        class="flex flex-col gap-6 items-center text-center"
+      >
         <h1 
           class="leading-[60px]"
           style="font-family: 'Playfair Display', serif; color: #B76E79; font-size: clamp(36px, 5vw, 60px)"

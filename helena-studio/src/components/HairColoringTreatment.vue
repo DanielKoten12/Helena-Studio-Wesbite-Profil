@@ -5,7 +5,12 @@
       <div class="max-w-6xl mx-auto px-4 md:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <!-- Left: Image -->
-          <div class="rounded-2xl overflow-hidden shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
+          <div 
+            v-motion
+            :initial="{ opacity: 0, x: -50 }"
+            :visible="{ opacity: 1, x: 0, transition: { duration: 600 } }"
+            class="rounded-2xl overflow-hidden shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]"
+          >
             <img 
               :src="treatment.image" 
               :alt="treatment.title" 
@@ -14,7 +19,12 @@
           </div>
 
           <!-- Right: Content -->
-          <div class="space-y-6">
+          <div 
+            v-motion
+            :initial="{ opacity: 0, x: 50 }"
+            :visible="{ opacity: 1, x: 0, transition: { duration: 600, delay: 200 } }"
+            class="space-y-6"
+          >
             <h1 
               class="leading-[60px]"
               style="font-family: 'Playfair Display', serif; color: #B76E79; font-size: clamp(36px, 5vw, 60px)"
@@ -60,7 +70,10 @@
     <!-- Benefits Section -->
     <section class="bg-white py-12 md:py-16 lg:py-20">
       <div class="max-w-6xl mx-auto px-4 md:px-8">
-        <h2 
+        <h2
+          v-motion
+          :initial="{ opacity: 0, y: 20 }"
+          :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }" 
           class="text-center mb-12 leading-12"
           style="font-family: 'Playfair Display', serif; color: #B76E79; font-size: clamp(32px, 4vw, 48px)"
         >
@@ -71,6 +84,9 @@
           <div 
             v-for="(benefit, index) in treatment.benefits"
             :key="index"
+            v-motion
+            :initial="{ opacity: 0, y: 20 }"
+            :visible="{ opacity: 1, y: 0, transition: { duration: 400, delay: index * 100 } }"
             class="flex gap-4 p-6 bg-[#f7f7f7] rounded-xl"
           >
             <div 
@@ -89,18 +105,25 @@
 
     <!-- Testimonials Section -->
     <TreatmentTestimonials :testimonials="testimonials" />
+
+    <!-- Booking Modal -->
+    <PesanSekarang v-model:open="showBookingModal" />
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { Clock } from 'lucide-vue-next'
 import TreatmentTestimonials from './TreatmentTestimonials.vue'
+import PesanSekarang from './PesanSekarang.vue'
 import ColoringImage from '../assets/ColoringTreatment.png'
 import Testi1 from '../assets/ColoringTesti1.jpeg'
 import Testi2 from '../assets/ColoringTesti2.jpeg'
 import Testi3 from '../assets/ColoringTesti3.jpeg'
 import Testi4 from '../assets/ColoringTesti4.jpeg'
 import Testi5 from '../assets/ColoringTesti5.jpeg'
+
+const showBookingModal = ref(false)
 
 const treatment = {
   id: 'hair-coloring',
@@ -157,7 +180,6 @@ const testimonials = [
 ]
 
 const handleBookNow = () => {
-  const message = encodeURIComponent('Halo, saya ingin booking treatment Hair Coloring')
-  window.open(`https://wa.me/6281234567890?text=${message}`, '_blank')
+  showBookingModal.value = true
 }
 </script>

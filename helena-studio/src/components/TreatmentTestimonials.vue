@@ -3,8 +3,11 @@
     class="py-12 md:py-16 lg:py-20"
     style="background-color: rgba(183, 110, 121, 0.44)"
   >
-    <div class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
       <h2 
+        v-motion
+        :initial="{ opacity: 0, y: 20 }"
+        :visible="{ opacity: 1, y: 0, transition: { duration: 500 } }"
         class="text-center mb-12 lg:mb-16 leading-12"
         style="font-family: 'Playfair Display', serif; color: #4a5565; font-size: clamp(32px, 4vw, 48px)"
       >
@@ -12,28 +15,29 @@
       </h2>
 
       <!-- Carousel Container -->
-      <div class="relative">
-        <div class="overflow-hidden">
+      <div class="relative max-w-[1440px] mx-auto">
+        <div class="overflow-hidden mx-auto" :style="{ maxWidth: containerMaxWidth }">
           <div
-            class="flex transition-transform duration-500 ease-out gap-6 lg:gap-8"
+            class="flex transition-transform duration-500 ease-in-out"
             :style="{ 
-              transform: `translateX(calc(-${currentIndex * (100 / cardsPerView)}% - ${currentIndex * (cardsPerView === 1 ? 0 : cardsPerView === 2 ? 24 : 32)}px))`
+              transform: `translateX(${translateValue}px)`,
+              gap: '24px',
+              paddingLeft: centerPadding,
+              paddingRight: centerPadding
             }"
           >
             <div
-              v-for="testimonial in testimonials"
-              :key="testimonial.id"
-              class="bg-white rounded-2xl p-6 md:p-8 shadow-lg space-y-4 shrink-0"
+              v-for="(testimonial, index) in displayTestimonials"
+              :key="`${testimonial.id}-${index}`"
+              class="bg-white rounded-2xl p-6 md:p-8 shadow-lg shrink-0 flex flex-col"
               :style="{ 
-                width: cardsPerView === 1 
-                  ? '100%' 
-                  : cardsPerView === 2 
-                    ? 'calc(50% - 12px)' 
-                    : 'calc(33.333% - 21.33px)'
+                width: cardWidth + 'px',
+                minHeight: '520px'
               }"
             >
-              <!-- Name and Rating -->
-              <div class="flex items-center justify-between">
+              <div class="space-y-4 flex flex-col h-full">
+                <!-- Name and Rating -->
+                <div class="flex items-center justify-between">
                 <p
                   class="leading-6 text-lg font-semibold"
                   style="font-family: 'Playfair Display', serif; color: #4a5565"
@@ -77,18 +81,19 @@
               </div>
 
               <!-- Image -->
-              <div class="rounded-lg overflow-hidden">
+              <div class="rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center" style="min-height: 250px">
                 <img
                   :src="testimonial.image"
                   :alt="testimonial.name"
-                  class="w-full h-auto object-cover"
+                  class="w-full h-full object-contain"
                 />
               </div>
 
-              <!-- Testimonial Text -->
-              <p class="text-[#4a5565] text-sm md:text-base leading-6 text-center">
-                "{{ testimonial.text }}"
-              </p>
+                <!-- Testimonial Text -->
+                <p class="text-[#4a5565] text-sm md:text-base leading-6 text-center">
+                  "{{ testimonial.text }}"
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -107,16 +112,16 @@
           <!-- Pagination Dots -->
           <div class="flex justify-center gap-2">
             <button
-              v-for="index in maxIndex + 1"
+              v-for="(testimonial, index) in testimonials"
               :key="index"
-              @click="currentIndex = index - 1"
+              @click="currentIndex = index"
               class="rounded-full transition-all"
               :class="[
-                index - 1 === currentIndex 
+                index === currentIndex 
                   ? 'bg-[#b76e79] w-8 h-2' 
                   : 'bg-[#b76e79] opacity-30 hover:opacity-60 w-2 h-2'
               ]"
-              :aria-label="`Go to slide ${index}`"
+              :aria-label="`Go to slide ${index + 1}`"
             />
           </div>
 
@@ -147,37 +152,95 @@ const props = defineProps({
 
 const currentIndex = ref(0)
 const cardsPerView = ref(3)
+const isTransitioning = ref(false)
 
-// Maximum index (bergeser 1 per 1)
-const maxIndex = computed(() => Math.max(0, props.testimonials.length - cardsPerView.value))
+// Triple testimonials for seamless infinite loop
+const displayTestimonials = computed(() => {
+  const items = props.testimonials
+  return [...items, ...items, ...items]
+})
+
+// Fixed card widths - larger for mobile and tablet
+const cardWidth = computed(() => {
+  if (cardsPerView.value === 1) {
+    // Mobile: larger card, more breathing room
+    return window.innerWidth < 400 ? 280 : 340
+  }
+  if (cardsPerView.value === 2) {
+    // Tablet: fill available space with 2 cards
+    return Math.min(380, (window.innerWidth - 120) / 2 - 12)
+  }
+  return 300 // Desktop: 4 cards
+})
+
+// Container max width to prevent extra cards from showing
+const containerMaxWidth = computed(() => {
+  const gap = 24
+  if (cardsPerView.value === 1) return `${cardWidth.value}px`
+  if (cardsPerView.value === 2) return `${(cardWidth.value * 2) + gap}px`
+  return `${(cardWidth.value * 4) + (gap * 3)}px`
+})
+
+// Center padding to center the carousel
+const centerPadding = computed(() => {
+  return '0px'
+})
+
+// Calculate translate value for smooth sliding
+const translateValue = computed(() => {
+  // Start from middle set to enable infinite loop
+  const offsetIndex = props.testimonials.length + currentIndex.value
+  const gap = 24
+  
+  // Calculate pixels to translate
+  return -(offsetIndex * (cardWidth.value + gap))
+})
 
 const updateCardsPerView = () => {
   if (window.innerWidth < 768) {
     cardsPerView.value = 1
-  } else if (window.innerWidth < 1024) {
+  } else if (window.innerWidth < 1280) {
     cardsPerView.value = 2
   } else {
-    cardsPerView.value = 3
-  }
-  // Reset index jika melebihi max setelah resize
-  if (currentIndex.value > maxIndex.value) {
-    currentIndex.value = maxIndex.value
+    cardsPerView.value = 4
   }
 }
 
 const handlePrev = () => {
-  if (currentIndex.value === 0) {
-    currentIndex.value = maxIndex.value
+  if (isTransitioning.value) return
+  isTransitioning.value = true
+  
+  currentIndex.value--
+  
+  // Seamless loop backward
+  if (currentIndex.value < 0) {
+    setTimeout(() => {
+      isTransitioning.value = false
+      currentIndex.value = props.testimonials.length - 1
+    }, 500)
   } else {
-    currentIndex.value--
+    setTimeout(() => {
+      isTransitioning.value = false
+    }, 500)
   }
 }
 
 const handleNext = () => {
-  if (currentIndex.value >= maxIndex.value) {
-    currentIndex.value = 0
+  if (isTransitioning.value) return
+  isTransitioning.value = true
+  
+  currentIndex.value++
+  
+  // Seamless loop forward
+  if (currentIndex.value >= props.testimonials.length) {
+    setTimeout(() => {
+      isTransitioning.value = false
+      currentIndex.value = 0
+    }, 500)
   } else {
-    currentIndex.value++
+    setTimeout(() => {
+      isTransitioning.value = false
+    }, 500)
   }
 }
 

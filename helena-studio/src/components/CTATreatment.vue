@@ -1,7 +1,12 @@
 <template>
   <section class="bg-[#b76e79] py-16 md:py-20">
     <div class="max-w-6xl mx-auto px-4 md:px-8">
-      <div class="flex flex-col items-center text-center gap-8">
+      <div 
+        v-motion
+        :initial="{ opacity: 0, y: 30 }"
+        :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
+        class="flex flex-col items-center text-center gap-8"
+      >
         <h2 
           class="leading-12 text-white"
           style="font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 48px)"
@@ -27,10 +32,18 @@
       </div>
     </div>
   </section>
+
+  <!-- Booking Modal -->
+  <PesanSekarang v-model:open="showBookingModal" />
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import PesanSekarang from './PesanSekarang.vue'
+
+const showBookingModal = ref(false)
+
 const handleReservation = () => {
-  window.open('https://wa.me/6282255819535', '_blank')
+  showBookingModal.value = true
 }
 </script>
