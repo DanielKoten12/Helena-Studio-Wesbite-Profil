@@ -53,7 +53,14 @@ const router = createRouter({
       path: '/hairstyle-ai',
       name: 'hairstyle-ai',
       component: () => import('../components/HairstyleAI.vue')
+    },
+
+    {
+      path: '/CV',
+      name: 'CV',
+      component: () => import('../components/CV.vue')
     }
+    
   ],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

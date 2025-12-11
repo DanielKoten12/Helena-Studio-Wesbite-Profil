@@ -50,6 +50,13 @@
           >
             Hairstyle AI
           </router-link>
+          <router-link 
+            to="/CV"
+            class="transition-colors font-semibold"
+            :class="$route.name === 'hairstyle-ai' ? 'text-[#B76E79]' : 'text-gray-700 hover:text-[#B76E79]'"
+          >
+            CV
+          </router-link>
         </div>
         
         <div class="flex items-center gap-4">
@@ -115,6 +122,14 @@
             :class="$route.name === 'hairstyle-ai' ? 'text-[#B76E79]' : 'text-gray-700'"
           >
             Hairstyle AI
+          </router-link>
+          <router-link 
+            to="/CV"
+            @click="mobileMenuOpen = false"
+            class="text-left transition-colors font-semibold"
+            :class="$route.name === 'hairstyle-ai' ? 'text-[#B76E79]' : 'text-gray-700'"
+          >
+            CV
           </router-link>
           <button 
             @click="handleBookNow(); mobileMenuOpen = false"
