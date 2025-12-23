@@ -1,0 +1,17 @@
+{
+  "name": "helena-studio-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Helena Studio Hairstyle AI",
+  "type": "module",
+  "main": "api/analyze.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@google/genai": "^1.30.0"
+  },
+  "devDependencies": {
+    "vercel": "^37.0.0"
+  }
+}

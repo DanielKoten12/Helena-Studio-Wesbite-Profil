@@ -140,7 +140,7 @@ import ImageUploader from './ImageUploader.vue'
 import SpinnerLoader from './SpinnerLoader.vue'
 import AnalysisResult from './AnalysisResult.vue'
 import RecommendationCard from './RecommendationCard.vue'
-import { performAnalysis, generateImage } from '../composables/geminiService'
+import { performAnalysis, generateImage } from '../composables/apiService'
 import { parseAnalysisResponse } from '../utils/parser'
 
 const imageFile = ref(null)

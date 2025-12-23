@@ -37,5 +37,10 @@ __screenshots__/
 
 .env
 .env.local
-/composables
-geminiService.js
+backend/.env
+backend/node_modules
+
+# Vercel
+.vercel
+
+.vercel
