@@ -152,6 +152,7 @@ const generatedImages = ref({})
 
 const isLoadingAnalysis = ref(false)
 const isLoadingImages = ref({})
+const imageErrors = ref({})
 
 const error = ref(null)
 
@@ -170,6 +171,7 @@ const resetState = () => {
   analysis.value = null
   recommendations.value = []
   generatedImages.value = {}
+  imageErrors.value = {}
   error.value = null
   isLoadingAnalysis.value = false
   isLoadingImages.value = {}
@@ -187,6 +189,7 @@ const handleAnalysis = async () => {
   recommendations.value = []
   generatedImages.value = {}
   isLoadingImages.value = {}
+  imageErrors.value = {}
 
   try {
     const responseText = await performAnalysis(imageBase64.value, imageFile.value.type)
@@ -216,6 +219,7 @@ const generateAllImages = async (recs) => {
   const imagePromises = recs.map(rec => 
     generateImage(rec.prompt, '1K', imageBase64.value, imageFile.value.type).catch(err => {
       console.error(`Error generating image for ${rec.option}:`, err)
+      imageErrors.value[rec.option] = err.message || 'Failed to generate image'
       return null
     })
   )

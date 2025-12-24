@@ -17,6 +17,18 @@
         <p class="mt-3 text-gray-500 text-sm">Generating hairstyle preview...</p>
         <p class="mt-1 text-gray-400 text-xs">This may take 20-40 seconds</p>
       </div>
+      <div v-else-if="error" class="absolute inset-0 flex items-center justify-center text-red-500 p-6">
+        <div class="text-center bg-red-50 p-6 rounded-lg border-2 border-red-200">
+          <div class="text-red-600 mb-3">
+            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <p class="text-sm font-bold mb-2 text-red-700">Generation Failed</p>
+          <p class="text-xs text-red-600 leading-relaxed">{{ error }}</p>
+          <p class="text-xs text-gray-500 mt-3">Backend or API issue detected</p>
+        </div>
+      </div>
       <img
         v-else-if="generatedImage"
         :src="generatedImage"
@@ -27,7 +39,7 @@
         <div class="text-center">
           <Scissors :size="48" class="mx-auto mb-3 opacity-30" />
           <p class="text-sm font-semibold mb-1">Hairstyle Preview</p>
-          <p class="text-xs text-gray-500">Click Generate button to see yourself with this style</p>
+          <p class="text-xs text-gray-500">Auto-generating image...</p>
         </div>
       </div>
     </div>
@@ -58,6 +70,10 @@ const props = defineProps({
     default: false
   },
   generatedImage: {
+    type: String,
+    default: null
+  },
+  error: {
     type: String,
     default: null
   }
