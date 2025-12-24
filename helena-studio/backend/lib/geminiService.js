@@ -139,7 +139,7 @@ STYLING INSTRUCTIONS:
 
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash-image',
+      model: 'gemini-3-pro-image',
       contents: {
         parts: [
           imagePart,  // User's original photo as reference
