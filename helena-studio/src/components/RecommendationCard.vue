@@ -40,17 +40,6 @@
         </h4>
         <p class="text-[#4A5565] text-sm leading-relaxed">{{ recommendation.suitability }}</p>
       </div>
-
-      <!-- Generate Button -->
-      <button
-        v-if="!generatedImage"
-        @click="$emit('generate')"
-        :disabled="isLoading"
-        class="w-full bg-[#B76E79] hover:bg-[#A05D6A] text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-      >
-        <Scissors :size="18" />
-        <span>{{ isLoading ? 'Generating...' : 'Generate Preview' }}</span>
-      </button>
     </div>
   </div>
 </template>
