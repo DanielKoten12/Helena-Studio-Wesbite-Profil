@@ -14,20 +14,20 @@
     <div class="relative bg-linear-to-br from-gray-50 to-gray-100 min-h-80 max-h-[500px] border-b border-gray-200 flex items-center justify-center p-4">
       <div v-if="isLoading" class="absolute inset-0 flex flex-col items-center justify-center p-6">
         <SpinnerLoader />
-        <p class="mt-3 text-gray-500 text-sm">Generating image...</p>
+        <p class="mt-3 text-gray-500 text-sm">Generating hairstyle preview...</p>
+        <p class="mt-1 text-gray-400 text-xs">This may take 20-40 seconds</p>
       </div>
       <img
         v-else-if="generatedImage"
         :src="generatedImage"
         :alt="recommendation.styleName"
-        class="w-full max-h-[480px] object-contain"
+        class="w-full max-h-[480px] object-contain rounded-lg"
       />
       <div v-else class="absolute inset-0 flex items-center justify-center text-gray-400 p-6">
         <div class="text-center">
           <Scissors :size="48" class="mx-auto mb-3 opacity-30" />
-          <p class="text-sm font-semibold mb-1">Visualisasi Hairstyle</p>
-          <p class="text-xs text-gray-500">Gunakan prompt di bawah untuk generate gambar</p>
-          <p class="text-xs text-[#B76E79] mt-2">📋 Copy prompt & paste ke AI image generator</p>
+          <p class="text-sm font-semibold mb-1">Hairstyle Preview</p>
+          <p class="text-xs text-gray-500">Click Generate button to see yourself with this style</p>
         </div>
       </div>
     </div>
@@ -40,6 +40,17 @@
         </h4>
         <p class="text-[#4A5565] text-sm leading-relaxed">{{ recommendation.suitability }}</p>
       </div>
+
+      <!-- Generate Button -->
+      <button
+        v-if="!generatedImage"
+        @click="$emit('generate')"
+        :disabled="isLoading"
+        class="w-full bg-[#B76E79] hover:bg-[#A05D6A] text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+      >
+        <Scissors :size="18" />
+        <span>{{ isLoading ? 'Generating...' : 'Generate Preview' }}</span>
+      </button>
     </div>
   </div>
 </template>
@@ -62,4 +73,6 @@ const props = defineProps({
     default: null
   }
 })
+
+defineEmits(['generate'])
 </script>
