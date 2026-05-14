@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <section id="home" class="bg-white py-8 md:py-12 lg:py-16">
     <div class="max-w-6xl mx-auto px-4 md:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -12,11 +12,17 @@
           <div>
             <h1 
               class="leading-[60px]" 
-              style="font-family: 'Playfair Display', serif; color: #B76E79; font-size: clamp(36px, 5vw, 60px)"
+              style="font-family: 'Playfair Display', serif; color: #544771; font-size: clamp(36px, 5vw, 60px)"
             >
               Welcome to
               <br />
-              Helena Studio
+              <img
+                src="@/assets/welcome-logo.png"
+                alt="Helena Studio"
+                class="inline-block h-16 md:h-20 w-auto object-contain align-middle"
+              />
+              <br />
+              Website
             </h1>
           </div>
 
@@ -30,14 +36,14 @@
           <div class="flex flex-col sm:flex-row gap-4">
             <button 
               @click="handleBookNow"
-              class="bg-[#b76e79] h-9 rounded-full px-8 flex items-center justify-center text-white hover:opacity-90 transition-opacity w-full sm:w-auto"
+              class="bg-[#544771] h-9 rounded-full px-8 flex items-center justify-center text-white hover:opacity-90 transition-opacity w-full sm:w-auto"
               style="font-family: 'Poppins', sans-serif; font-weight: 500"
             >
               Pesan Sekarang
             </button>
             <button 
               @click="scrollToTreatments"
-              class="bg-white h-9 rounded-full px-8 flex items-center justify-center text-[#b76e79] border border-[#b76e79] hover:bg-[#b76e79] hover:text-white transition-colors w-full sm:w-auto"
+              class="bg-white h-9 rounded-full px-8 flex items-center justify-center text-[#544771] border border-[#544771] hover:bg-[#544771] hover:text-white transition-colors w-full sm:w-auto"
               style="font-family: 'Poppins', sans-serif; font-weight: 500"
             >
               Lihat Layanan Kami

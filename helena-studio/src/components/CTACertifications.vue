@@ -5,7 +5,7 @@
       <div class="text-center mb-12 md:mb-16">
         <h2 
           class="font-normal mb-4"
-          style="font-family: 'Playfair Display', serif; color: #b76e79; font-size: clamp(32px, 5vw, 48px); line-height: 1.2"
+          style="font-family: 'Playfair Display', serif; color: #544771; font-size: clamp(32px, 5vw, 48px); line-height: 1.2"
         >
           Certifications & Training
         </h2>
@@ -17,10 +17,16 @@
         </p>
       </div>
 
+      <!-- Loading State -->
+      <div v-if="loading" class="text-center py-12">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#544771]"></div>
+        <p class="mt-4 text-[#4a5565]">Memuat sertifikat...</p>
+      </div>
+
       <!-- Certifications Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+      <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
         <div 
-          v-for="(cert, index) in certificationsData"
+          v-for="(cert, index) in certificates"
           :key="cert.id"
           v-motion
           :initial="{ opacity: 0, y: 30 }"
@@ -30,8 +36,8 @@
           <!-- Certificate Image -->
           <div class="h-[200px] md:h-[260px] lg:h-[321px] overflow-hidden rounded-2xl">
             <img 
-              :src="cert.image" 
-              :alt="cert.title" 
+              :src="cert.image_url" 
+              :alt="cert.institution_name" 
               class="w-full h-full object-cover"
             />
           </div>
@@ -40,16 +46,16 @@
           <div class="flex gap-3 md:gap-4 items-start">
             <!-- Icon -->
             <div class="shrink-0 w-12 h-12 md:w-14 md:h-14 bg-[#fff5f7] rounded-full flex items-center justify-center">
-              <Award :size="28" class="text-[#b76e79]" />
+              <Award :size="28" class="text-[#544771]" />
             </div>
 
             <!-- Text Info -->
             <div class="space-y-1 md:space-y-2">
               <h3 
-                class="font-normal text-[#b76e79]"
+                class="font-normal text-[#544771]"
                 style="font-family: 'Playfair Display', serif; font-size: clamp(18px, 1.8vw, 20px); line-height: 1.4"
               >
-                {{ cert.title }}
+                {{ cert.institution_name }}
               </h3>
               <p 
                 class="text-[#4a5565]"
@@ -61,10 +67,15 @@
                 class="text-[#6a7282]"
                 style="font-family: 'Poppins', sans-serif; font-size: clamp(13px, 1.2vw, 14px); line-height: 1.4"
               >
-                {{ cert.year }}
+                Certified {{ cert.year }}
               </p>
             </div>
           </div>
+        </div>
+
+        <!-- Empty State -->
+        <div v-if="!loading && certificates.length === 0" class="col-span-full text-center py-12">
+          <p class="text-[#4a5565]">Belum ada sertifikat yang ditampilkan</p>
         </div>
       </div>
     </div>
@@ -72,32 +83,21 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
 import { Award } from 'lucide-vue-next'
-import imgCert1 from '../assets/JonnyAndreanSertif.png'
-import imgCert2 from '../assets/ImelSertif.png'
-import imgCert3 from '../assets/MarisaSertif.png'
+import { dataService } from '@/composables/dataService'
 
-const certificationsData = [
-  {
-    id: 1,
-    image: imgCert1,
-    title: 'Jhonny Andrean Salon Academy',
-    location: 'Jakarta Selatan',
-    year: 'Certified 2015'
-  },
-  {
-    id: 2,
-    image: imgCert2,
-    title: 'Imel Vilentcia',
-    location: 'Surabaya',
-    year: 'Certified 2021'
-  },
-  {
-    id: 3,
-    image: imgCert3,
-    title: 'Rika Hair Studio',
-    location: 'Samarinda',
-    year: 'Certified 2022'
+const loading = ref(true)
+const certificates = ref([])
+
+onMounted(async () => {
+  try {
+    const data = await dataService.getCertificates()
+    certificates.value = data
+  } catch (error) {
+    console.error('Error loading certificates:', error)
+  } finally {
+    loading.value = false
   }
-]
+})
 </script>

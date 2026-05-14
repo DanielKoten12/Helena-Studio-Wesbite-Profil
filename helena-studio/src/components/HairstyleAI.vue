@@ -1,14 +1,14 @@
-<template>
+﻿<template>
   <div class="min-h-screen bg-white text-[#4A5565] pb-20">
     <main class="max-w-7xl mx-auto px-4 py-12">
       <!-- Page Title -->
       <div class="text-center mb-12">
         <div class="flex items-center justify-center gap-3 mb-4">
-          <div class="bg-[#B76E79] p-3 rounded-lg text-white">
+          <div class="bg-[#544771] p-3 rounded-lg text-white">
             <Scissors :size="32" />
           </div>
           <h1 class="text-4xl md:text-5xl font-bold text-[#4A5565]" style="font-family: 'Playfair Display', serif">
-            Hairstyle <span class="text-[#B76E79]">AI</span>
+            Hairstyle <span class="text-[#544771]">AI</span>
           </h1>
         </div>
         <p class="text-sm text-gray-500">Helena Studio</p>
@@ -16,7 +16,7 @@
       <!-- Intro -->
       <div v-if="!imageFile && !analysis" class="text-center mb-12 animate-fade-in">
         <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#4A5565]">
-          Cari Gaya Rambut yang <span class="text-[#B76E79]">Pas Buat Kamu</span>
+          Cari Gaya Rambut yang <span class="text-[#544771]">Pas Buat Kamu</span>
         </h2>
         <p class="text-lg text-gray-500 mb-8 max-w-2xl mx-auto">
           Upload foto selfie kamu, dan biarkan AI menganalisis bentuk wajahmu untuk memberikan 
@@ -43,13 +43,13 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- Upload Section -->
         <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
-          <h2 class="text-2xl font-bold mb-4 text-[#B76E79]">1. Upload Foto Selfie</h2>
+          <h2 class="text-2xl font-bold mb-4 text-[#544771]">1. Upload Foto Selfie</h2>
           <ImageUploader @imageUpload="handleImageUpload" @reset="resetState" />
 
           <!-- Info Box -->
-          <div v-if="imageFile" class="mt-6 bg-[#B76E79]/5 border border-[#B76E79]/20 rounded-lg p-4">
+          <div v-if="imageFile" class="mt-6 bg-[#544771]/5 border border-[#544771]/20 rounded-lg p-4">
             <div class="flex items-start gap-3">
-              <Sparkles :size="20" class="text-[#B76E79] shrink-0 mt-0.5" />
+              <Sparkles :size="20" class="text-[#544771] shrink-0 mt-0.5" />
               <div class="text-sm text-[#4A5565]">
                 <p class="font-semibold mb-1">AI akan menganalisis:</p>
                 <ul class="list-disc list-inside space-y-1 text-xs text-gray-600">
@@ -66,7 +66,7 @@
             <button
               @click="handleAnalysis"
               :disabled="isLoadingAnalysis || Object.values(isLoadingImages).some(Boolean)"
-              class="w-full bg-[#B76E79] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#a05d68] transition-all duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center shadow-lg"
+              class="w-full bg-[#544771] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#44395b] transition-all duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center shadow-lg"
             >
               <template v-if="isLoadingAnalysis">
                 <SpinnerLoader />
@@ -80,7 +80,7 @@
             <button
               v-if="!isLoadingAnalysis"
               @click="resetState"
-              class="mt-4 w-full text-sm text-gray-500 hover:text-[#B76E79] transition-colors"
+              class="mt-4 w-full text-sm text-gray-500 hover:text-[#544771] transition-colors"
             >
               Start Over
             </button>
@@ -89,7 +89,7 @@
 
         <!-- Results Section -->
         <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 lg:row-span-2">
-          <h2 class="text-2xl font-bold mb-4 text-[#B76E79]">AI Results</h2>
+          <h2 class="text-2xl font-bold mb-4 text-[#544771]">AI Results</h2>
           
           <div v-if="isLoadingAnalysis" class="text-center p-8">
             <SpinnerLoader />
@@ -110,7 +110,7 @@
 
       <!-- Recommendations Section -->
       <div v-if="recommendations.length > 0" class="mt-8">
-        <h2 class="text-3xl font-bold text-center mb-6 text-[#B76E79] flex items-center justify-center gap-3">
+        <h2 class="text-3xl font-bold text-center mb-6 text-[#544771] flex items-center justify-center gap-3">
           <Scissors :size="32" />
           3 Hairstyle Recommendations
         </h2>

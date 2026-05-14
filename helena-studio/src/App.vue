@@ -12,7 +12,3 @@
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 </script>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
-</style>

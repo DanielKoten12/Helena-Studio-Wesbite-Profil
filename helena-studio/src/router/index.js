@@ -15,6 +15,11 @@ const router = createRouter({
       component: () => import('../pages/Treatments.vue')
     },
     {
+      path: '/treatments/:slug',
+      name: 'treatment-detail',
+      component: () => import('../pages/TreatmentDetailPage.vue')
+    },
+    {
       path: '/treatments/haircut',
       name: 'haircut',
       component: () => import('../components/HaircutTreatment.vue')

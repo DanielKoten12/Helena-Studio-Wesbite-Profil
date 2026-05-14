@@ -1,8 +1,8 @@
 <template>
   <div>
     <AboutHelenaHero />
-    <PerjalananHelenaStudio />
     <CTACertifications />
+    <PerjalananHelenaStudio />
   </div>
 </template>
 

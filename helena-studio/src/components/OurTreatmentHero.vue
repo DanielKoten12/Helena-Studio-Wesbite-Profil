@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <section class="bg-[#f7f7f7] py-12 md:py-16 lg:py-20">
     <div class="max-w-6xl mx-auto px-4 md:px-8">
       <div 
@@ -9,7 +9,7 @@
       >
         <h1 
           class="leading-[60px]"
-          style="font-family: 'Playfair Display', serif; color: #B76E79; font-size: clamp(36px, 5vw, 60px)"
+          style="font-family: 'Playfair Display', serif; color: #544771; font-size: clamp(36px, 5vw, 60px)"
         >
           Our Treatments
         </h1>

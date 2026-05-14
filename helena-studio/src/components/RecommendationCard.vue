@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300">
     <!-- Header -->
     <div class="bg-[#4A5565] text-white p-4">
@@ -47,7 +47,7 @@
     <!-- Content -->
     <div class="p-6 grow flex flex-col gap-4">
       <div>
-        <h4 class="font-bold text-[#B76E79] text-sm mb-2 flex items-center gap-2">
+        <h4 class="font-bold text-[#544771] text-sm mb-2 flex items-center gap-2">
           <Info :size="16" /> Kenapa Cocok?
         </h4>
         <p class="text-[#4A5565] text-sm leading-relaxed">{{ recommendation.suitability }}</p>

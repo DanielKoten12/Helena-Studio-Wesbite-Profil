@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="space-y-4">
     <!-- Upload Area -->
     <div
@@ -9,12 +9,12 @@
       @drop.prevent="handleDrop"
       :class="[
         'border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-200',
-        isDragging ? 'border-[#B76E79] bg-[#B76E79]/10' : 'border-gray-300 hover:border-[#B76E79] hover:bg-gray-50'
+        isDragging ? 'border-[#544771] bg-[#544771]/10' : 'border-gray-300 hover:border-[#544771] hover:bg-gray-50'
       ]"
     >
       <div class="flex flex-col items-center gap-4">
-        <div class="bg-[#B76E79]/10 p-4 rounded-full">
-          <Camera :size="40" class="text-[#B76E79]" />
+        <div class="bg-[#544771]/10 p-4 rounded-full">
+          <Camera :size="40" class="text-[#544771]" />
         </div>
         <div>
           <p class="text-lg font-semibold text-[#4A5565]">Upload Foto Selfie</p>
@@ -43,7 +43,7 @@
         </button>
         <button
           @click="handleConfirm"
-          class="flex items-center justify-center gap-2 px-6 py-3 bg-[#B76E79] text-white rounded-lg hover:bg-[#A05D68] transition-colors font-medium"
+          class="flex items-center justify-center gap-2 px-6 py-3 bg-[#544771] text-white rounded-lg hover:bg-[#44395b] transition-colors font-medium"
         >
           <Check :size="20" />
           Gunakan Foto Ini
@@ -115,10 +115,10 @@
             <div class="p-4 space-y-3">
               <button
                 @click="openCamera"
-                class="w-full flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#B76E79] hover:bg-[#B76E79]/5 transition-all group"
+                class="w-full flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#544771] hover:bg-[#544771]/5 transition-all group"
               >
-                <div class="bg-[#B76E79]/10 group-hover:bg-[#B76E79]/20 p-3 rounded-full transition-colors">
-                  <Camera :size="24" class="text-[#B76E79]" />
+                <div class="bg-[#544771]/10 group-hover:bg-[#544771]/20 p-3 rounded-full transition-colors">
+                  <Camera :size="24" class="text-[#544771]" />
                 </div>
                 <div class="text-left flex-1">
                   <p class="font-semibold text-[#4A5565]">Ambil Foto</p>
@@ -128,10 +128,10 @@
 
               <button
                 @click="openGallery"
-                class="w-full flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#B76E79] hover:bg-[#B76E79]/5 transition-all group"
+                class="w-full flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#544771] hover:bg-[#544771]/5 transition-all group"
               >
-                <div class="bg-[#B76E79]/10 group-hover:bg-[#B76E79]/20 p-3 rounded-full transition-colors">
-                  <ImageIcon :size="24" class="text-[#B76E79]" />
+                <div class="bg-[#544771]/10 group-hover:bg-[#544771]/20 p-3 rounded-full transition-colors">
+                  <ImageIcon :size="24" class="text-[#544771]" />
                 </div>
                 <div class="text-left flex-1">
                   <p class="font-semibold text-[#4A5565]">Pilih dari Galeri</p>

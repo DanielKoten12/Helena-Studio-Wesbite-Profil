@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <DialogRoot :open="open" @update:open="$emit('update:open', $event)">
       <DialogPortal>
         <DialogOverlay 
@@ -17,7 +17,7 @@
           <!-- Close Button (X) -->
           <button
             @click="$emit('update:open', false)"
-            class="absolute right-4 top-4 rounded-sm opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#b76e79] focus:ring-offset-2"
+            class="absolute right-4 top-4 rounded-sm opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#544771] focus:ring-offset-2"
           >
             <X :size="16" class="text-[#4a5565]" />
             <span class="sr-only">Close</span>
@@ -26,7 +26,7 @@
           <!-- Header -->
           <div class="space-y-2 mb-6 pr-8">
             <h2 
-              class="font-semibold text-[30px] leading-9 text-[#b76e79]"
+              class="font-semibold text-[30px] leading-9 text-[#544771]"
               style="font-family: 'Playfair Display', serif"
             >
               Reservasi Diterima
@@ -43,7 +43,7 @@
           <div class="flex justify-end">
             <button
               @click="$emit('update:open', false)"
-              class="bg-[#b76e79] hover:bg-[#a15e69] text-white px-6 py-2 rounded-lg transition-colors"
+              class="bg-[#544771] hover:bg-[#44395b] text-white px-6 py-2 rounded-lg transition-colors"
               style="font-family: 'Poppins', sans-serif; font-size: 14px; line-height: 20px"
             >
               Close

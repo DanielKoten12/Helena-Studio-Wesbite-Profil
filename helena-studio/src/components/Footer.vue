@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <footer style="background-color: #F7F7F7" class="border-t border-gray-200">
     <div class="max-w-[1440px] mx-auto px-4 md:px-8 py-12 md:py-16">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -6,7 +6,7 @@
         <div>
           <h3 
             class="text-xl md:text-2xl mb-3 md:mb-4" 
-            style="font-family: 'Playfair Display', serif; color: #B76E79"
+            style="font-family: 'Playfair Display', serif; color: #544771"
           >
             Visit Us
           </h3>
@@ -23,26 +23,26 @@
         <div>
           <h3 
             class="text-xl md:text-2xl mb-3 md:mb-4" 
-            style="font-family: 'Playfair Display', serif; color: #B76E79"
+            style="font-family: 'Playfair Display', serif; color: #544771"
           >
             Quick Links
           </h3>
           <div class="flex flex-col gap-2">
             <router-link 
               to="/"
-              class="text-gray-600 hover:text-[#B76E79] transition-colors text-left text-sm md:text-base"
+              class="text-gray-600 hover:text-[#544771] transition-colors text-left text-sm md:text-base"
             >
               Home
             </router-link>
             <router-link 
               to="/treatments"
-              class="text-gray-600 hover:text-[#B76E79] transition-colors text-left text-sm md:text-base"
+              class="text-gray-600 hover:text-[#544771] transition-colors text-left text-sm md:text-base"
             >
               Treatments
             </router-link>
             <router-link 
               to="/about"
-              class="text-gray-600 hover:text-[#B76E79] transition-colors text-left text-sm md:text-base"
+              class="text-gray-600 hover:text-[#544771] transition-colors text-left text-sm md:text-base"
             >
               About Us
             </router-link>
@@ -53,7 +53,7 @@
         <div>
           <h3 
             class="text-xl md:text-2xl mb-3 md:mb-4" 
-            style="font-family: 'Playfair Display', serif; color: #B76E79"
+            style="font-family: 'Playfair Display', serif; color: #544771"
           >
             Our Contact
           </h3>
@@ -62,14 +62,14 @@
               href="https://instagram.com/helenastudio_kaltim" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="flex items-center gap-2 text-gray-600 hover:text-[#B76E79] transition-colors text-sm md:text-base"
+              class="flex items-center gap-2 text-gray-600 hover:text-[#544771] transition-colors text-sm md:text-base"
             >
               <Instagram class="w-5 h-5" />
               <span>@helenastudio_kaltim</span>
             </a>
             <a 
               href="tel:0822-5581-9535" 
-              class="flex items-center gap-2 text-gray-600 hover:text-[#B76E79] transition-colors text-sm md:text-base"
+              class="flex items-center gap-2 text-gray-600 hover:text-[#544771] transition-colors text-sm md:text-base"
             >
               <Phone class="w-5 h-5" />
               <span>0822-5581-9535</span>
@@ -79,7 +79,7 @@
       </div>
 
       <div class="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-gray-200 text-center text-gray-600 text-sm md:text-base">
-        <p>© 2025 Helena Studio. All rights reserved.</p>
+        <p>Â© 2025 Helena Studio. All rights reserved.</p>
       </div>
     </div>
   </footer>

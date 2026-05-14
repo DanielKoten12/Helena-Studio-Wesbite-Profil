@@ -1,0 +1,14 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "env": {
+    "VITE_SUPABASE_URL": "@vite_supabase_url",
+    "VITE_SUPABASE_ANON_KEY": "@vite_supabase_anon_key",
+    "VITE_SUPABASE_SERVICE_KEY": "@vite_supabase_service_key",
+    "VITE_CLOUDINARY_CLOUD_NAME": "@vite_cloudinary_cloud_name",
+    "VITE_CLOUDINARY_UPLOAD_PRESET": "@vite_cloudinary_upload_preset",
+    "VITE_SESSION_TIMEOUT_MINUTES": "30"
+  }
+}

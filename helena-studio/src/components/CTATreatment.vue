@@ -1,5 +1,5 @@
-<template>
-  <section class="bg-[#b76e79] py-16 md:py-20">
+﻿<template>
+  <section class="bg-[#544771] py-16 md:py-20">
     <div class="max-w-6xl mx-auto px-4 md:px-8">
       <div 
         v-motion
@@ -24,7 +24,7 @@
         
         <button 
           @click="handleReservation"
-          class="bg-white h-12 rounded-full px-12 text-[#b76e79] hover:bg-[#f7f7f7] transition-colors text-[18px]"
+          class="bg-white h-12 rounded-full px-12 text-[#544771] hover:bg-[#f7f7f7] transition-colors text-[18px]"
           style="font-family: 'Poppins', sans-serif; font-weight: 500"
         >
           Reservasi Sekarang

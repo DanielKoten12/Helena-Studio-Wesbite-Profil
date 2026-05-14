@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <section class="bg-white py-12 md:py-16 lg:py-20 px-4 md:px-8">
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
@@ -11,7 +11,7 @@
         >
           <h2 
             class="font-medium mb-6 md:mb-8"
-            style="font-family: 'Playfair Display', serif; color: #b76e79; font-size: clamp(28px, 4vw, 36px); line-height: 1.2"
+            style="font-family: 'Playfair Display', serif; color: #544771; font-size: clamp(28px, 4vw, 36px); line-height: 1.2"
           >
             Hubungi Kami
           </h2>
@@ -20,7 +20,7 @@
             <!-- Address -->
             <div class="flex gap-3 md:gap-4 items-start">
               <div class="shrink-0 w-10 h-10 md:w-12 md:h-12 bg-[#f7f7f7] rounded-full flex items-center justify-center">
-                <MapPin :size="20" class="text-[#b76e79] md:w-6 md:h-6" />
+                <MapPin :size="20" class="text-[#544771] md:w-6 md:h-6" />
               </div>
               <div class="space-y-1 md:space-y-2">
                 <h3 
@@ -45,7 +45,7 @@
             <!-- WhatsApp -->
             <div class="flex gap-3 md:gap-4 items-start">
               <div class="shrink-0 w-10 h-10 md:w-12 md:h-12 bg-[#f7f7f7] rounded-full flex items-center justify-center">
-                <Phone :size="20" class="text-[#b76e79] md:w-6 md:h-6" />
+                <Phone :size="20" class="text-[#544771] md:w-6 md:h-6" />
               </div>
               <div class="space-y-1 md:space-y-2">
                 <h3 
@@ -56,7 +56,7 @@
                 </h3>
                 <a 
                   :href="getWhatsAppLink()"
-                  class="text-[#4a5565] hover:text-[#b76e79] transition-colors"
+                  class="text-[#4a5565] hover:text-[#544771] transition-colors"
                   style="font-family: 'Poppins', sans-serif; font-size: clamp(14px, 1.3vw, 16px); line-height: 1.5"
                 >
                   {{ contactInfo.whatsapp.number }}
@@ -67,7 +67,7 @@
             <!-- Instagram -->
             <div class="flex gap-3 md:gap-4 items-start">
               <div class="shrink-0 w-10 h-10 md:w-12 md:h-12 bg-[#f7f7f7] rounded-full flex items-center justify-center">
-                <Instagram :size="20" class="text-[#b76e79] md:w-6 md:h-6" />
+                <Instagram :size="20" class="text-[#544771] md:w-6 md:h-6" />
               </div>
               <div class="space-y-1 md:space-y-2">
                 <h3 
@@ -80,7 +80,7 @@
                   :href="getInstagramLink()"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-[#4a5565] hover:text-[#b76e79] transition-colors"
+                  class="text-[#4a5565] hover:text-[#544771] transition-colors"
                   style="font-family: 'Poppins', sans-serif; font-size: clamp(14px, 1.3vw, 16px); line-height: 1.5"
                 >
                   {{ contactInfo.instagram.handle }}
@@ -91,7 +91,7 @@
             <!-- Opening Hours -->
             <div class="flex gap-3 md:gap-4 items-start">
               <div class="shrink-0 w-10 h-10 md:w-12 md:h-12 bg-[#f7f7f7] rounded-full flex items-center justify-center">
-                <Clock :size="20" class="text-[#b76e79] md:w-6 md:h-6" />
+                <Clock :size="20" class="text-[#544771] md:w-6 md:h-6" />
               </div>
               <div class="space-y-1 md:space-y-2">
                 <h3 
@@ -138,7 +138,7 @@
             :href="contactInfo.mapLink"
             target="_blank"
             rel="noopener noreferrer"
-            class="mt-4 flex items-center justify-center gap-2 bg-[#b76e79] text-white rounded-full px-6 py-3 hover:opacity-90 transition-opacity"
+            class="mt-4 flex items-center justify-center gap-2 bg-[#544771] text-white rounded-full px-6 py-3 hover:opacity-90 transition-opacity"
             style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: clamp(14px, 1.2vw, 16px)"
           >
             <MapPin :size="18" />

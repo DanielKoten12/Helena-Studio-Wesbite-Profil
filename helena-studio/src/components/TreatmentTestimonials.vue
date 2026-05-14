@@ -1,7 +1,7 @@
-<template>
+﻿<template>
   <section 
     class="py-12 md:py-16 lg:py-20"
-    style="background-color: rgba(183, 110, 121, 0.44)"
+    style="background-color: rgba(195, 178, 215, 0.44)"
   >
     <div class="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
       <h2 
@@ -54,8 +54,8 @@
                   >
                     <path 
                       d="M8 1.33301L10.06 5.50634L14.6667 6.17967L11.3333 9.42634L12.12 14.013L8 11.8463L3.88 14.013L4.66667 9.42634L1.33333 6.17967L5.94 5.50634L8 1.33301Z" 
-                      fill="#B76E79" 
-                      stroke="#B76E79" 
+                      fill="#544771" 
+                      stroke="#544771" 
                       stroke-width="1.33333" 
                       stroke-linecap="round" 
                       stroke-linejoin="round" 
@@ -69,8 +69,8 @@
                   >
                     <path 
                       d="M8 1.33301L10.06 5.50634L14.6667 6.17967L11.3333 9.42634L12.12 14.013L8 11.8463L3.88 14.013L4.66667 9.42634L1.33333 6.17967L5.94 5.50634L8 1.33301Z" 
-                      fill="#B76E79" 
-                      stroke="#B76E79" 
+                      fill="#544771" 
+                      stroke="#544771" 
                       stroke-width="1.33333" 
                       stroke-linecap="round" 
                       stroke-linejoin="round" 
@@ -81,11 +81,13 @@
               </div>
 
               <!-- Image -->
-              <div class="rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center" style="min-height: 250px">
+              <div class="rounded-lg overflow-hidden bg-gray-50 h-[250px] md:h-[260px]">
                 <img
                   :src="testimonial.image"
                   :alt="testimonial.name"
-                  class="w-full h-full object-contain"
+                  class="w-full h-full object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 
@@ -103,7 +105,7 @@
           <!-- Previous Button -->
           <button
             @click="handlePrev"
-            class="bg-white rounded-full p-2 md:p-3 shadow-lg hover:bg-[#b76e79] hover:text-white transition-all"
+            class="bg-white rounded-full p-2 md:p-3 shadow-lg hover:bg-[#544771] hover:text-white transition-all"
             aria-label="Previous testimonials"
           >
             <ChevronLeft class="w-5 h-5 md:w-6 md:h-6" />
@@ -118,8 +120,8 @@
               class="rounded-full transition-all"
               :class="[
                 index === currentIndex 
-                  ? 'bg-[#b76e79] w-8 h-2' 
-                  : 'bg-[#b76e79] opacity-30 hover:opacity-60 w-2 h-2'
+                  ? 'bg-[#544771] w-8 h-2' 
+                  : 'bg-[#544771] opacity-30 hover:opacity-60 w-2 h-2'
               ]"
               :aria-label="`Go to slide ${index + 1}`"
             />
@@ -128,7 +130,7 @@
           <!-- Next Button -->
           <button
             @click="handleNext"
-            class="bg-white rounded-full p-2 md:p-3 shadow-lg hover:bg-[#b76e79] hover:text-white transition-all"
+            class="bg-white rounded-full p-2 md:p-3 shadow-lg hover:bg-[#544771] hover:text-white transition-all"
             aria-label="Next testimonials"
           >
             <ChevronRight class="w-5 h-5 md:w-6 md:h-6" />

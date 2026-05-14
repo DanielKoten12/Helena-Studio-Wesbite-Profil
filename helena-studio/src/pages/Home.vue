@@ -1,13 +1,13 @@
 <template>
   <div>
-    <HeroHome />
+    <PromoSection />
     <TreatmentsSection />
     <TestimonialsSection />
   </div>
 </template>
 
 <script setup>
-import HeroHome from '../components/HeroHome.vue'
+import PromoSection from '../components/PromoSection.vue'
 import TreatmentsSection from '../components/TreatmentsSection.vue'
 import TestimonialsSection from '../components/TestimonialsSection.vue'
 </script>

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <section class="bg-[#f7f7f7] py-12 md:py-16 lg:py-20 px-4 md:px-8">
     <div 
       v-motion
@@ -8,7 +8,7 @@
     >
       <h1 
         class="font-normal mb-6 md:mb-8"
-        style="font-family: 'Playfair Display', serif; color: #b76e79; font-size: clamp(36px, 6vw, 60px); line-height: 1.2"
+        style="font-family: 'Playfair Display', serif; color: #544771; font-size: clamp(36px, 6vw, 60px); line-height: 1.2"
       >
         Find Us
       </h1>

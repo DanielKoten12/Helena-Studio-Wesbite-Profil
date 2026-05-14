@@ -1,110 +1,45 @@
-<template>
+﻿<template>
   <section id="treatments" class="py-12 md:py-16 lg:py-20 bg-white">
     <div class="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
       <h2 
         class="text-center mb-12 lg:mb-16 leading-12"
-        style="font-family: 'Playfair Display', serif; color: #B76E79; font-size: clamp(32px, 4vw, 48px)"
+        style="font-family: 'Playfair Display', serif; color: #544771; font-size: clamp(32px, 4vw, 48px)"
       >
         Our Treatments
       </h2>
 
       <!-- Treatment Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Haircut Card -->
         <div 
+          v-for="(item, index) in cards"
+          :key="item.slug"
           v-motion
           :initial="{ opacity: 0, y: 30 }"
-          :visible="{ opacity: 1, y: 0, transition: { duration: 500, delay: 0 } }"
+          :visible="{ opacity: 1, y: 0, transition: { duration: 500, delay: index * 120 } }"
           class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
         >
           <div class="overflow-hidden h-64">
             <img 
-              :src="haircutImage" 
-              alt="Haircut" 
+              :src="item.image" 
+              :alt="item.title" 
               class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
             />
           </div>
           <div class="p-6">
             <h3 
               class="text-2xl mb-3"
-              style="font-family: 'Playfair Display', serif; color: #B76E79"
+              style="font-family: 'Playfair Display', serif; color: #544771"
             >
-              Haircut
+              {{ item.title }}
             </h3>
             <p class="text-gray-600 mb-4 text-sm">
-              Potongan rambut profesional yang disesuaikan dengan bentuk wajah dan gaya pribadi Anda.
+              {{ item.description }}
             </p>
             <p 
               class="text-2xl font-semibold"
-              style="color: #B76E79; font-family: 'Poppins', sans-serif"
+              style="color: #544771; font-family: 'Poppins', sans-serif"
             >
-              Rp80.000
-            </p>
-          </div>
-        </div>
-
-        <!-- Hair Coloring Card -->
-        <div 
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :visible="{ opacity: 1, y: 0, transition: { duration: 500, delay: 100 } }"
-          class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="overflow-hidden h-64">
-            <img 
-              :src="coloringImage" 
-              alt="Hair Coloring" 
-              class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-            />
-          </div>
-          <div class="p-6">
-            <h3 
-              class="text-2xl mb-3"
-              style="font-family: 'Playfair Display', serif; color: #B76E79"
-            >
-              Hair Coloring
-            </h3>
-            <p class="text-gray-600 mb-4 text-sm">
-              Ubah tampilan Anda dengan teknik pewarnaan modern dan hasil yang lembut dan alami.
-            </p>
-            <p 
-              class="text-2xl font-semibold"
-              style="color: #B76E79; font-family: 'Poppins', sans-serif"
-            >
-              Rp150.000
-            </p>
-          </div>
-        </div>
-
-        <!-- Hair Keratin Treatment Card -->
-        <div 
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :visible="{ opacity: 1, y: 0, transition: { duration: 500, delay: 200 } }"
-          class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-        >
-          <div class="overflow-hidden h-64">
-            <img 
-              :src="keratinImage" 
-              alt="Hair Keratin Treatment" 
-              class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-            />
-          </div>
-          <div class="p-6">
-            <h3 
-              class="text-2xl mb-3"
-              style="font-family: 'Playfair Display', serif; color: #B76E79"
-            >
-              Hair Keratin Treatment
-            </h3>
-            <p class="text-gray-600 mb-4 text-sm">
-              Perawatan untuk mengembalikan kilau rambut agar tetap sehat, halus, dan mudah diatur.
-            </p>
-            <p 
-              class="text-2xl font-semibold"
-              style="color: #B76E79; font-family: 'Poppins', sans-serif"
-            >
-              Rp120.000
+              {{ item.price }}
             </p>
           </div>
         </div>
@@ -114,7 +49,7 @@
       <div class="text-center mt-12">
         <button 
           @click="handleViewAll"
-          class="bg-[#b76e79] h-10 rounded-full px-10 text-white hover:opacity-90 transition-opacity"
+          class="bg-[#544771] h-10 rounded-full px-10 text-white hover:opacity-90 transition-opacity"
           style="font-family: 'Poppins', sans-serif; font-weight: 500"
         >
           Lihat Semua Treatment
@@ -126,17 +61,32 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import haircutImage from '@/assets/HaircutTreatment.png'
-import coloringImage from '@/assets/ColoringTreatment.png'
-import keratinImage from '@/assets/KeratinTreament.png'
+import { onMounted, ref } from 'vue'
+import { treatmentContentService } from '@/composables/treatmentContentService'
 
 const router = useRouter()
+const cards = ref([])
 
 defineProps({
   onViewAllTreatments: Function
 })
 
+const loadCards = async () => {
+  const rows = await treatmentContentService.getTreatments()
+  cards.value = rows.slice(0, 3).map((item) => ({
+    slug: item.slug,
+    title: item.title,
+    description: item.short_description,
+    price: item.starting_price_label || '-',
+    image: item.banner_image_url
+  }))
+}
+
 const handleViewAll = () => {
   router.push('/treatments')
 }
+
+onMounted(() => {
+  loadCards()
+})
 </script>

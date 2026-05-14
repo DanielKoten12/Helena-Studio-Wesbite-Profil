@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <section class="bg-white py-12 md:py-16 lg:py-20 px-4 md:px-8">
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -11,7 +11,7 @@
         >
           <h1 
             class="font-normal leading-[60px]"
-            style="font-family: 'Playfair Display', serif; color: #b76e79; font-size: clamp(36px, 6vw, 60px)"
+            style="font-family: 'Playfair Display', serif; color: #544771; font-size: clamp(36px, 6vw, 60px)"
           >
             About Helena
           </h1>
@@ -32,7 +32,7 @@
             >
               Setiap layanan yang kami berikan adalah hasil dari bertahun-tahun pelatihan, dedikasi, dan ketulusan hati.
               <br />
-              Bagi kami, kecantikan bukan sekadar pekerjaan—ini adalah panggilan untuk menghadirkan rasa percaya diri dan kebahagiaan bagi setiap orang yang kami layani. 💇‍♀️💖
+              Bagi kami, kecantikan bukan sekadar pekerjaanâ€”ini adalah panggilan untuk menghadirkan rasa percaya diri dan kebahagiaan bagi setiap orang yang kami layani. ðŸ’‡â€â™€ï¸ðŸ’–
             </p>
           </div>
         </div>
@@ -52,7 +52,7 @@
             />
             
             <!-- Name Card Overlay -->
-            <div class="absolute bottom-8 md:bottom-12 lg:bottom-20 right-4 md:right-8 bg-[#b76e79] rounded-2xl shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)] px-4 md:px-6 pt-4 md:pt-6 pb-3 md:pb-4">
+            <div class="absolute bottom-8 md:bottom-12 lg:bottom-20 right-4 md:right-8 bg-[#544771] rounded-2xl shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)] px-4 md:px-6 pt-4 md:pt-6 pb-3 md:pb-4">
               <h3 
                 class="text-white leading-7"
                 style="font-family: 'Poppins', sans-serif; font-size: clamp(16px, 1.5vw, 18px)"
