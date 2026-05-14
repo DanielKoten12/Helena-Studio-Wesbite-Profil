@@ -78,7 +78,7 @@ export const performAnalysis = async (imageBase64, mimeType) => {
 
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash-exp',
+      model: 'gemini-2.5-flash',
       contents: { parts: [imagePart, textPart] },
       config: {
         systemInstruction: ANALYSIS_SYSTEM_PROMPT,
