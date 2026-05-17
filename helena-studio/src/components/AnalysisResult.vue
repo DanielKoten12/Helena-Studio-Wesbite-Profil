@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="space-y-4 text-[#4A5565]">
     <div>
-      <h3 class="text-lg font-semibold text-[#544771] mb-3">ðŸ” HASIL Analisis</h3>
+      <h3 class="text-lg font-semibold text-[#544771] mb-3">Hasil Analisis</h3>
       <ul class="space-y-2 bg-gray-50 p-4 rounded-lg">
         <li class="flex items-start gap-2">
           <span class="font-bold text-[#544771] min-w-[140px]">Bentuk Wajah:</span>

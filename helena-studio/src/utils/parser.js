@@ -3,25 +3,30 @@ export const parseAnalysisResponse = (text) => {
   const recommendations = [];
 
   try {
-    const diagnosisSection = text.split('## 🔍 HASIL DIAGNOSA')[1]?.split('---')[0] || '';
-    analysis.faceShape = diagnosisSection.match(/\* \*\*Bentuk Wajah:\*\*\s*(.*)/)?.[1]?.trim() || 'N/A';
-    analysis.hairType = diagnosisSection.match(/\* \*\*Jenis Rambut:\*\*\s*(.*)/)?.[1]?.trim() || 'N/A';
-    analysis.hairLength = diagnosisSection.match(/\* \*\*Panjang Rambut:\*\*\s*(.*)/)?.[1]?.trim() || 'N/A';
-    analysis.stylistNotes = diagnosisSection.match(/\*Catatan Stylist:\s*([\s\S]*)/)?.[1]?.trim() || 'N/A';
+    const diagnosisMatch = text.match(
+      /##\s*(?:🔍\s*)?HASIL\s*(?:DIAGNOSA|ANALISIS)\s*([\s\S]*?)(?=##\s*(?:✂️\s*)?3\s*REKOMENDASI\s*GAYA\s*RAMBUT|##\s*(?:✂️\s*)?REKOMENDASI|$)/i
+    );
+    const diagnosisSection = diagnosisMatch ? diagnosisMatch[1] : '';
 
-    const recommendationsSection = text.split('## ✂️ 3 REKOMENDASI GAYA RAMBUT')[1] || '';
-    const recBlocks = recommendationsSection.split('### Opsi').slice(1);
+    analysis.faceShape = diagnosisSection.match(/\*\s*\*\*Bentuk Wajah:\*\*\s*(.*)/)?.[1]?.trim() || 'N/A';
+    analysis.hairType = diagnosisSection.match(/\*\s*\*\*Jenis Rambut:\*\*\s*(.*)/)?.[1]?.trim() || 'N/A';
+    analysis.hairLength = diagnosisSection.match(/\*\s*\*\*Panjang Rambut:\*\*\s*(.*)/)?.[1]?.trim() || 'N/A';
+    analysis.stylistNotes = diagnosisSection.match(/\*\s*Catatan Stylist:\s*([\s\S]*)/)?.[1]?.trim() || 'N/A';
+
+    const recommendationsMatch = text.match(/##\s*(?:✂️\s*)?3\s*REKOMENDASI\s*GAYA\s*RAMBUT\s*([\s\S]*)/i);
+    const recommendationsSection = recommendationsMatch ? recommendationsMatch[1] : '';
+    const recBlocks = recommendationsSection.split(/###\s*Opsi\s*/i).slice(1);
 
     recBlocks.forEach((block) => {
-      const optionMatch = block.match(/^ (\d+): (.*)/);
+      const optionMatch = block.match(/^(\d+)\s*:\s*(.*)/);
       if (!optionMatch) return;
 
       const option = `Opsi ${optionMatch[1]}`;
       const styleName = optionMatch[2].trim();
-      const suitability = block.match(/\* \*\*Kenapa Cocok:\*\*\s*([\s\S]*?)(?=\* \*\*Prompt Visual \(Copy ke Nano Banana\):)/)?.[1]?.trim() || 'N/A';
+      const suitability = block.match(/\*\s*\*\*Kenapa Cocok:\*\*\s*([\s\S]*?)(?=\*\s*\*\*Prompt Visual)/i)?.[1]?.trim() || 'N/A';
       const promptMatch = block.match(/`([\s\S]*?)`/);
       const prompt = promptMatch ? promptMatch[1].trim() : 'N/A';
-      
+
       recommendations.push({
         option,
         styleName,

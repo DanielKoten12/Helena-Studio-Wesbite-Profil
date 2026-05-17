@@ -43,18 +43,32 @@ Berikut adalah 3 opsi gaya rambut yang direkomendasikan:
 ### Opsi 1: [Hairstyle Name]
 * **Kenapa Cocok:** [Explain suitability for the user's Face Shape]
 * **Prompt Visual (Copy ke Nano Banana):**
-    \`generate image: A hyper-realistic portrait of an Indonesian woman/man, with the same age, face shape, and skin tone as the person in the photo. The subject is wearing similar clothes. The subject has a new hairstyle: [Hairstyle Name], [detailed description of the hairstyle: texture, volume, styling]. Soft studio lighting, 8k resolution, photorealistic, highly detailed.\`
+  \`generate image: Use the provided reference photo. Keep the same person and identity. Only change the hairstyle to: [Hairstyle Name], [detailed description of the hairstyle: texture, volume, styling].\`
 
 ### Opsi 2: [Hairstyle Name]
 * **Kenapa Cocok:** [Explain suitability]
 * **Prompt Visual (Copy ke Nano Banana):**
-    \`generate image: A hyper-realistic portrait of an Indonesian woman/man, with the same age, face shape, and skin tone as the person in the photo. The subject is wearing similar clothes. The subject has a new hairstyle: [Hairstyle Name], [detailed description of the hairstyle: texture, volume, styling]. Soft studio lighting, 8k resolution, photorealistic, highly detailed.\`
+  \`generate image: Use the provided reference photo. Keep the same person and identity. Only change the hairstyle to: [Hairstyle Name], [detailed description of the hairstyle: texture, volume, styling].\`
 
 ### Opsi 3: [Hairstyle Name]
 * **Kenapa Cocok:** [Explain suitability]
 * **Prompt Visual (Copy ke Nano Banana):**
-    \`generate image: A hyper-realistic portrait of an Indonesian woman/man, with the same age, face shape, and skin tone as the person in the photo. The subject is wearing similar clothes. The subject has a new hairstyle: [Hairstyle Name], [detailed description of the hairstyle: texture, volume, styling]. Soft studio lighting, 8k resolution, photorealistic, highly detailed.\`
+    \`generate image: Use the provided reference photo. Keep the same person and identity. Only change the hairstyle to: [Hairstyle Name], [detailed description of the hairstyle: texture, volume, styling].\`
 `;
+
+const extractHairstyleDescription = (prompt) => {
+  if (!prompt) return '';
+  let cleaned = prompt.replace(/`/g, '').trim();
+  cleaned = cleaned.replace(/^generate image:\s*/i, '').trim();
+  const newHairMatch = cleaned.match(/new hairstyle:\s*([\s\S]*)/i);
+  let description = newHairMatch ? newHairMatch[1] : cleaned;
+  description = description
+    .split(/soft studio lighting|8k resolution|photorealistic|highly detailed/i)[0]
+    .trim()
+    .replace(/\.+$/, '')
+    .trim();
+  return description || cleaned;
+};
 
 export const performAnalysis = async (imageBase64, mimeType) => {
   const apiKey = process.env.GEMINI_API_KEY;
@@ -111,8 +125,10 @@ export const generateImage = async (prompt, imageSize = '1K', userImageBase64, u
   const ai = new GoogleGenAI({ apiKey });
   const cleanPrompt = prompt.replace('generate image:', '').trim();
 
+  const hairstyleDescription = extractHairstyleDescription(cleanPrompt);
+
   // Create enhanced prompt for hairstyle transfer
-  const enhancedPrompt = `IMPORTANT: Use the provided face photo as reference. Keep the EXACT SAME face, facial features, skin tone, and face structure. ONLY change the hairstyle to match this description: ${cleanPrompt}. 
+  const enhancedPrompt = `IMPORTANT: Use the provided face photo as reference. Keep the EXACT SAME person and identity. Do NOT change facial features, skin tone, eye color, head shape, or expression. ONLY change the hairstyle to: ${hairstyleDescription}. 
 
 FRAMING REQUIREMENTS - VERY IMPORTANT:
 - Use a WIDER FRAME with significant space above the head (at least 20% extra space above the top of the hair)
